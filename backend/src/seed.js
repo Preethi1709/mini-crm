@@ -1,0 +1,2 @@
+import 'dotenv/config'; import mongoose from 'mongoose'; import bcrypt from 'bcryptjs'; import {User} from './models/index.js';
+await mongoose.connect(process.env.MONGODB_URI);const email='admin@example.com';if(!await User.findOne({email})){await User.create({name:'Admin',email,password:await bcrypt.hash('ChangeMe123!',12),role:'admin'});console.log('Seeded admin@example.com');}else console.log('Admin already exists');await mongoose.disconnect();
